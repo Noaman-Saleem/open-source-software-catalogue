@@ -28,9 +28,7 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
 // routes
-app.use(homeRouter);
 app.use(softwareRouter);
-// app.use(catagoryRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

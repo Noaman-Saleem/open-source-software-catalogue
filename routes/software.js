@@ -8,8 +8,12 @@ const {
 } = require("../controllers/software");
 const { goToHomePage } = require("../controllers/home");
 
-router.route("/").post(createSoftware).get(goToHomePage);
+router.route("/").get(goToHomePage).post(createSoftware);
+
+//All softwares of a same category
 router.route("/:category").get(getCategory);
-// router.route("/:category/:software/:id").get(getSoftware);
+
+//Go to specific software
+router.route("/:category/:software/:id").get(getSoftware);
 
 module.exports = router;

@@ -5,9 +5,9 @@ const Software = require("../models/Software");
 
 //@Create New Software
 //@ Method POST
-//@ Route --> /:category
+//@ Route --> /
 const createSoftware = async (req, res) => {
-  //################Lower case each letter of every word##################
+  //################Lower case each letter of every word in Category##################
   const str = req.body.category;
 
   //split the above string into an array of strings
@@ -43,12 +43,32 @@ const getCategory = async (req, res) => {
   // console.log(req.params);
   // console.log(newStr);
   const softwares = await Software.find({ category: newStr });
-  // console.log(softwares);
-  res.status(StatusCodes.OK).render("categoryCollection", { softwares });
+
+  //Add dashed name and category to each software
+  const modifiesSoftware = [];
+  for (let software of softwares) {
+    //Adding - inplace of spaces in software.category
+    const strCategory = software.category;
+    const newCategory = strCategory.split(" ").join("-");
+    //Adding - inplace of spaces in software.name
+    const strName = software.name;
+    const newName = strName.split(" ").join("-");
+    software = { ...software._doc, newCategory, newName };
+    modifiesSoftware.push(software);
+    // console.log(modifiesSoftware);
+  }
+  res.status(StatusCodes.OK).render("categoryCollection", { modifiesSoftware });
 };
 
+//@ GetSingle Softwares
+//@ Method GET
+//@ Route --> /:category/:software/:id
 const getSoftware = async (req, res) => {
-  res.status(StatusCodes.OK).render("specificSoftware");
+  // console.log(req.params.id);
+  const software = await Software.findById(req.params.id);
+  // console.log(software);
+
+  res.status(StatusCodes.OK).render("specificSoftware", { software });
 };
 
 module.exports = {
