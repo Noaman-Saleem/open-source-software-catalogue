@@ -1,12 +1,13 @@
-<%- include("./partials/header") %> <%- include("./partials/navbar") %> <%
-for(let software of modifiesSoftware) {%>
+<%- include("./partials/header") %> <%- include("./partials/navbar") %>
 <div class="container">
+  <% for(let software of modifiesSoftware) {%>
   <h3>
     <a
       href="/<%= software.newCategory %>/<%= software.newName %>/<%= software._id %>"
       ><%= software.name %></a
     >
   </h3>
-</div>
 
-<% } %> <%- include("./partials/footer") %>
+  <% } %>
+</div>
+<%- include("./partials/footer") %>

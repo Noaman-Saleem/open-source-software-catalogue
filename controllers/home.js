@@ -8,7 +8,8 @@ const goToHomePage = async (req, res) => {
   const softwares = await Software.find({});
 
   //Add dashed name and category to each software
-  const modifiesSoftware = [];
+  const modifiesSoftware = [{ simpleCat: "" }];
+  const categoryArray = [];
   for (let software of softwares) {
     //Adding - inplace of spaces in software.category
     const strCategory = software.category;
@@ -18,7 +19,13 @@ const goToHomePage = async (req, res) => {
     const newName = strName.split(" ").join("-");
     software = { ...software._doc, newCategory, newName };
     modifiesSoftware.push(software);
-    // console.log(modifiesSoftware);
+    // if (!categoryArray.simpleCat.includes(software.category)) {
+    //   categoryArray.push({
+    //     simpleCat: software.category,
+    //     dashedCat: newCategory,
+    //   });
+    // }
+    console.log(modifiesSoftware);
   }
 
   res.status(StatusCodes.OK).render("home", { modifiesSoftware });
