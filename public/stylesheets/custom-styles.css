@@ -1,0 +1,13 @@
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.nav-items-custom-margin {
+  margin-left: 190px;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-items-custom-margin {
+    margin-left: 0px;
+  }
+}
