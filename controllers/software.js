@@ -22,7 +22,7 @@ const createSoftware = async (req, res) => {
   //Join all the elements of the array back into a string
   //using a blankspace as a separator
   const str2 = arr.join(" ");
-  // console.log(str2);
+  console.log(str2);
   //################Lower case each letter of every word##################
 
   req.body.category = str2;
