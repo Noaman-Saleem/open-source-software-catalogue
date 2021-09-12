@@ -17,8 +17,10 @@ const goToHomePage = async (req, res) => {
     const strName = software.name;
     const newName = strName.split(" ").join("-");
     software = { ...software._doc, newCategory, newName };
+    // software = { ...software._doc, newCategory };
     modifiesSoftware.push(software);
   }
+  console.log(modifiesSoftware);
 
   //Initialize arrays of distinct Cayegories simple and dashed
   const arr = modifiesSoftware.map((p) => p.category);
@@ -26,17 +28,25 @@ const goToHomePage = async (req, res) => {
   const s = new Set(arr); // a set removes duplications, but it's still a set
   const unique = [...s]; //  Use the spread operator to transform a set into an Array
   // console.log(unique);
+  //  unique: ["graphic design", "data analysis", "web development"];
 
   const arr2 = modifiesSoftware.map((p) => p.newCategory);
   // console.log(arr2);
   const s2 = new Set(arr2); // a set removes duplications, but it's still a set
   const unique2 = [...s2]; //  Use the spread operator to transform a set into an Array
   // console.log(unique2);
+  // unique2: ["graphic-design", "data-analysis", "web-development"];
 
   const uniqueArray = [{ unique, unique2 }];
+  // [
+  //   {
+  //     unique: ["graphic design", "data analysis", "web development"],
+  //     unique2: ["graphic-design", "data-analysis", "web-development"],
+  //   },
+  // ];
 
-  console.log(uniqueArray);
-  console.log(uniqueArray[0].unique.length);
+  // console.log(uniqueArray);
+  // console.log(uniqueArray[0].unique.length);
   res.status(StatusCodes.OK).render("home", { modifiesSoftware, uniqueArray });
 };
 
