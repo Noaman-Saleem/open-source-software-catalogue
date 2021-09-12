@@ -20,7 +20,7 @@ const goToHomePage = async (req, res) => {
     // software = { ...software._doc, newCategory };
     modifiesSoftware.push(software);
   }
-  console.log(modifiesSoftware);
+  // console.log(modifiesSoftware);
 
   //Initialize arrays of distinct Cayegories simple and dashed
   const arr = modifiesSoftware.map((p) => p.category);
