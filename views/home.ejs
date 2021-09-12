@@ -30,12 +30,10 @@
       <h4 style="font-weight: 700">CATEGORIES</h4>
       <table class="table table-sm">
         <tbody>
-          <% for(let i = 0; i < uniqueArray[0].unique.length ; i++) {%>
+          <% for(let i=0; i<success[0].length; i++) {%>
           <tr>
             <td>
-              <a href="/<%= uniqueArray[0].unique2[i] %> "
-                ><%= uniqueArray[0].unique[i] %>
-              </a>
+              <a href="/<%= success[1][i] %> "><%= success[0][i] %> </a>
             </td>
           </tr>
           <% } %>
@@ -62,11 +60,11 @@
       <h4 style="font-weight: 700">POPULAR PACKAGES</h4>
       <table class="table table-sm">
         <tbody>
-          <% for(let software of modifiesSoftware) {%>
+          <% for(let software of modifiedSoftware) {%>
           <tr>
             <td>
               <a
-                href="/<%= software.newCategory %>/<%= software.newName %>/<%= software._id %> "
+                href="/<%= software.cat %>/<%= software.naam %>/<%= software._id %> "
                 ><%= software.name %>
               </a>
             </td>
