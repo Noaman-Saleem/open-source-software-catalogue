@@ -8,8 +8,7 @@ const goToHomePage = async (req, res) => {
   const softwares = await Software.find({});
 
   //Add dashed name and category to each software
-  const modifiesSoftware = [{ simpleCat: "" }];
-  const categoryArray = [];
+  const modifiesSoftware = [];
   for (let software of softwares) {
     //Adding - inplace of spaces in software.category
     const strCategory = software.category;
@@ -19,16 +18,26 @@ const goToHomePage = async (req, res) => {
     const newName = strName.split(" ").join("-");
     software = { ...software._doc, newCategory, newName };
     modifiesSoftware.push(software);
-    // if (!categoryArray.simpleCat.includes(software.category)) {
-    //   categoryArray.push({
-    //     simpleCat: software.category,
-    //     dashedCat: newCategory,
-    //   });
-    // }
-    console.log(modifiesSoftware);
   }
 
-  res.status(StatusCodes.OK).render("home", { modifiesSoftware });
+  //Initialize arrays of distinct Cayegories simple and dashed
+  const arr = modifiesSoftware.map((p) => p.category);
+  // console.log(arr);
+  const s = new Set(arr); // a set removes duplications, but it's still a set
+  const unique = [...s]; //  Use the spread operator to transform a set into an Array
+  // console.log(unique);
+
+  const arr2 = modifiesSoftware.map((p) => p.newCategory);
+  // console.log(arr2);
+  const s2 = new Set(arr2); // a set removes duplications, but it's still a set
+  const unique2 = [...s2]; //  Use the spread operator to transform a set into an Array
+  // console.log(unique2);
+
+  const uniqueArray = [{ unique, unique2 }];
+
+  console.log(uniqueArray);
+  console.log(uniqueArray[0].unique.length);
+  res.status(StatusCodes.OK).render("home", { modifiesSoftware, uniqueArray });
 };
 
 module.exports = {

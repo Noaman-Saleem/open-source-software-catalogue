@@ -30,7 +30,16 @@
       <h4 style="font-weight: 700">CATEGORIES</h4>
       <table class="table table-sm">
         <tbody>
+          <% for(let i = 0; i < uniqueArray[0].unique.length ; i++) {%>
           <tr>
+            <td>
+              <a href="/<%= uniqueArray[0].unique2[i] %> "
+                ><%= uniqueArray[0].unique[i] %>
+              </a>
+            </td>
+          </tr>
+          <% } %>
+          <!-- <tr>
             <td><a href="/graphic-design">Graphic Design</a></td>
             <td><a href="/data-analysis">Data Analysis</a></td>
             <td><a href="/web-development">Web Development</a></td>
@@ -44,7 +53,7 @@
             <td><a href="#">Graphic Design</a></td>
             <td><a href="#">3D Modeling</a></td>
             <td><a href="#">Video Editing</a></td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
